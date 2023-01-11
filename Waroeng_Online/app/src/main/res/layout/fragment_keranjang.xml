@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/green_old">
+
+    <RelativeLayout
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/poppins_bold"
+            android:text="Keranjang"
+            android:textColor="@color/search"
+            android:textSize="16sp"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:layout_centerVertical="true"
+            android:id="@+id/btn_delete_keranjang"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
+            android:src="@drawable/ic_baseline_delete_24"
+            tools:ignore="ContentDescription" />
+    </RelativeLayout>
+
+    <CheckBox
+        android:id="@+id/cb_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/search"
+        android:text="Select All"
+        tools:ignore="HardcodedText" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_produk_keranjang"
+        android:layout_marginHorizontal="15dp"
+        android:layout_above="@+id/div_footer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+        <RelativeLayout
+            android:background="@color/green_old"
+            android:id="@+id/div_footer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:fontFamily="@font/poppins_regular"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total"/>
+
+                <TextView
+                    android:id="@+id/tv_total"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_bold"
+                    android:textColor="@color/search"
+                    android:textSize="16dp"
+                    android:text="Rp10.000"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/btn_bayar"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:layout_width="120dp"
+                android:background="@color/search"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_bold"
+                android:text="Bayar"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:padding="10dp"/>
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

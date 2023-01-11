@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "829572572248",
+    "project_id": "waroengonline-db271",
+    "storage_bucket": "waroengonline-db271.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:829572572248:android:dc3a1255d1e9303070d62d",
+        "android_client_info": {
+          "package_name": "com.example.waroeng_online"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "829572572248-o7s4s066if7p5mhaf8b13ct38fnou7vs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.waroeng_online",
+            "certificate_hash": "02aa6245205749047e35f07bdd877591f5b2b007"
+          }
+        },
+        {
+          "client_id": "829572572248-ojf5ja99oit656gn6nsgp5bs1eccibie.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCbvJvyFkrgNwq4KrH0lhQpRgucZNmI0LY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "829572572248-ojf5ja99oit656gn6nsgp5bs1eccibie.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

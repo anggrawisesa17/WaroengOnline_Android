@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Waroeng Online</string>
+    <string name="title_activity_main">Waroeng Online</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="default_notification_channel_id" translatable="false">waroengonline</string>
+    <string name="waroeng_online">Waroeng Online</string>
+    <string name="beli_sekarang">Beli Sekarang</string>
+    <string name="nama_produk">Nama Produk</string>
+    <string name="rp0">Rp0</string>
+    <string name="pembelian_dalam_jumlah_besar_hubungi">Pembelian dalam jumlah besar hubungi</string>
+    <string name="ketuttangkas17_gmail_com">ketuttangkas17@gmail.com</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="deskripsi_barang">deskripsi barang ...</string>
+    <string name="produk_terkait">Produk Terkait</string>
+    <string name="pengiriman">Pengiriman</string>
+    <string name="metode_pembayaran">Metode Pembayaran</string>
+    <string name="selesai">Selesai</string>
+    <string name="alamat_pengiriman">Alamat Pengiriman</string>
+    <string name="pilih_alamat_pengiriman">* Pilih alamat pengiriman</string>
+    <string name="nama">Nama</string>
+    <string name="_0812345678">0812345678</string>
+    <string name="alamat">alamat</string>
+    <string name="tambah_alamat">Tambah Alamat</string>
+    <string name="pilih_metode_pengiriman">Pilih Metode Pengiriman</string>
+    <string name="metode_pengiriman">Metode Pengiriman</string>
+    <string name="catatan_pengiriman">Catatan Pengiriman</string>
+    <string name="catatan_untuk_penjual_opsional">Catatan untuk penjual(Opsional)</string>
+    <string name="rekap_belanja">Rekap Belanja</string>
+    <string name="total_belanja">Total Belanja</string>
+    <string name="biaya_pengiriman">Biaya Pengiriman</string>
+    <string name="total">Total</string>
+    <string name="bayar">Bayar</string>
+</resources>

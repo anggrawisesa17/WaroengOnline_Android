@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/_15sdp"
+    tools:context=".activity.BaruActivity"
+    android:background="@color/green_old">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_400sdp"
+        android:paddingHorizontal="@dimen/_10sdp"
+        tools:ignore="ContentDescription" />
+
+    <Button
+        android:id="@+id/btn_upload"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:backgroundTint="@color/search"
+        android:text="Upload"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/green_old"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/btn_image_lain"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:layout_margin="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:backgroundTint="@color/search"
+        android:text="Ambil Gambar Lain"
+        android:fontFamily="@font/poppins_bold"
+        android:textColor="@color/green_old"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

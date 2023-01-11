@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.ListAlamatActivity"
+    android:orientation="vertical"
+    android:background="@color/green_old">
+
+    <include
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_margin="15dp"
+        android:text="Alamat Pengiriman"
+        android:textColor="@color/search"
+        android:textSize="14sp"
+        tools:ignore="HardcodedText" />
+
+    <LinearLayout
+        android:id="@+id/div_kosong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_margin="15dp"
+            android:text="Belum Ada Daftar Alamat"
+            android:textColor="@color/search"
+            android:textSize="14sp"
+            android:visibility="visible"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Tambahkan alamat anda sekarang untuk belanja di Waroeng Online"
+            android:textColor="@color/search"
+            android:visibility="visible"
+            tools:ignore="HardcodedText" />
+
+    </LinearLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_alamat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_buatAlamat"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="@color/search"
+        android:paddingHorizontal="30dp"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/green_old"
+        android:text="Tambah Alamat"
+        android:textAllCaps="false"
+        android:textSize="11sp"
+        tools:targetApi="lollipop"
+        tools:ignore="HardcodedText" />
+
+</LinearLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".activity.DetailProdukActivity">
+
+
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_custom"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/green_old"
+            app:contentInsetStartWithNavigation="0dp"
+            app:paddingEnd="5dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Dark" />
+
+        <RelativeLayout
+            android:id="@+id/btn_keranjang_toolbar"
+            android:layout_marginEnd="15dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_width="40dp"
+            android:layout_height="40dp">
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_baseline_shopping_cart_24"
+                tools:ignore="ContentDescription" />
+
+            <RelativeLayout
+                android:id="@+id/div_angka"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/bg_bulet"
+                android:layout_width="18dp"
+                android:layout_height="18dp">
+
+                <TextView
+                    android:id="@+id/tv_angka"
+                    android:layout_centerInParent="true"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="12dp"
+                    android:text="1"
+                    android:maxLines="2"/>
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</com.google.android.material.appbar.AppBarLayout>

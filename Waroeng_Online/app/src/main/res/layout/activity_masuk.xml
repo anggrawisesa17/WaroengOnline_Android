@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.BaruActivity"
+    android:background="@color/green_old">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="15dp"
+            android:src="@drawable/logo_waroeng"
+            tools:ignore="ContentDescription,ImageContrastCheck" />
+
+        <TextView
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Belanja Murah Tanpa Ribet"
+            android:textSize="16dp"/>
+
+        <Button
+            android:id="@+id/btn_login"
+            android:backgroundTint="@color/search"
+            android:textColor="@color/green_old"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginBottom="10dp"
+            android:text="Login"/>
+
+        <Button
+            android:id="@+id/btn_regis"
+            android:backgroundTint="@color/search"
+            android:textColor="@color/green_old"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:text="Register"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

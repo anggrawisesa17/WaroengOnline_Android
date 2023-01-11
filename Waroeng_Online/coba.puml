@@ -1,0 +1,1382 @@
+@startuml
+class com.example.waroeng_online.BuildConfig {
++ {static} boolean DEBUG
++ {static} String APPLICATION_ID
++ {static} String BUILD_TYPE
++ {static} int VERSION_CODE
++ {static} String VERSION_NAME
+}
+interface com.example.waroeng_online.room.DaoKeranjang {
++ {abstract}void insert(com.example.waroeng_online.model.Produk)
++ {abstract}void delete(com.example.waroeng_online.model.Produk)
++ {abstract}void delete(java.util.List<? extends com.example.waroeng_online.model.Produk>)
++ {abstract}int update(com.example.waroeng_online.model.Produk)
++ {abstract}java.util.List<com.example.waroeng_online.model.Produk> getAll()
++ {abstract}com.example.waroeng_online.model.Produk getProduk(int)
++ {abstract}int deleteById(java.lang.String)
++ {abstract}int deleteAll()
+}
+class com.example.waroeng_online.databinding.ActivityDetailProdukBinding {
+- LinearLayout rootView
++ RelativeLayout btnBeliSekarang
++ RelativeLayout btnKeranjangProduk
++ LinearLayout detailProduk
++ LinearLayout divFooter
++ ImageView imageProduk
++ TextView tvDeskripsi
++ TextView tvHargaProduk
++ TextView tvNamaProduk
++ LinearLayout getRoot()
++ {static} ActivityDetailProdukBinding inflate(LayoutInflater)
++ {static} ActivityDetailProdukBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityDetailProdukBinding bind(View)
+}
+class com.example.waroeng_online.activity.PengirimanActivity {
+- com.example.waroeng_online.room.MyDatabase myDb
+- android.widget.Button btnTambahAlamat
++ androidx.appcompat.widget.Toolbar toolbar
+- androidx.cardview.widget.CardView divAlamat
+- android.widget.TextView divKosong
+- android.widget.TextView tvKosong
+- android.widget.TextView tvPhone
+- android.widget.TextView tvAlamat
+- android.widget.TextView tvNama
+- androidx.recyclerview.widget.RecyclerView rvMetode
+- android.widget.LinearLayout divMetodePengiriman
++ android.widget.Spinner spnKurir
+- androidx.cardview.widget.CardView divPengiriman
+- android.widget.TextView tvOngkir
+- android.widget.TextView tvTotal
+- android.widget.TextView tvTotalBelanja
+- android.widget.Button btnBayar
+- android.widget.EditText edtCatatan
+- int totalHarga
+- java.lang.String ongkir
+- java.lang.String kurir
+- java.lang.String jasaKirim
++ androidx.appcompat.widget.Toolbar getToolbar()
++ void setToolbar(androidx.appcompat.widget.Toolbar)
++ android.widget.Spinner getSpnKurir()
++ void setSpnKurir(android.widget.Spinner)
+# void onCreate(android.os.Bundle)
+- void setSepinner()
++ void chekAlamat()
+- void mainButton()
+- void bayar()
+- void getOngkir(java.lang.String)
++ java.lang.String getOngkir()
++ void setOngkir(java.lang.String)
++ java.lang.String getKurir()
++ void setKurir(java.lang.String)
++ java.lang.String getJasaKirim()
++ void setJasaKirim(java.lang.String)
+- void displayOngkir(java.lang.String,java.util.ArrayList<com.example.waroeng_online.model.rajaongkir.Costs>)
++ void setTotal(java.lang.String)
++ boolean onSupportNavigateUp()
+# void onResume()
+}
+class com.example.waroeng_online.model.rajaongkir.Costs {
+- java.lang.String service
+- java.lang.String description
+- java.util.ArrayList<com.example.waroeng_online.model.rajaongkir.Cost> cost
+- boolean isActive
++ java.lang.String getService()
++ java.lang.String getDescription()
++ java.util.ArrayList<com.example.waroeng_online.model.rajaongkir.Cost> getCost()
++ boolean isActive()
++ void setActive(boolean)
+}
+abstract class com.example.waroeng_online.room.MyDatabase {
++ {static} com.example.waroeng_online.room.MyDatabase.Companion Companion
+- {static} com.example.waroeng_online.room.MyDatabase INSTANCE
++ {abstract}com.example.waroeng_online.room.DaoKeranjang daoKeranjang()
++ {abstract}com.example.waroeng_online.room.DaoAlamat daoAlamat()
+}
+class com.example.waroeng_online.room.MyDatabase.Companion {
++ com.example.waroeng_online.room.MyDatabase getInstance(android.content.Context)
++ void destroyInstance()
+}
+class com.example.waroeng_online.databinding.ItemBankBinding {
+- LinearLayout rootView
++ ImageView image
++ LinearLayout layout
++ TextView tvNama
++ LinearLayout getRoot()
++ {static} ItemBankBinding inflate(LayoutInflater)
++ {static} ItemBankBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ItemBankBinding bind(View)
+}
+class com.example.waroeng_online.room.MyDatabase_Impl {
+- DaoKeranjang _daoKeranjang
+- DaoAlamat _daoAlamat
+# SupportSQLiteOpenHelper createOpenHelper(DatabaseConfiguration)
+# InvalidationTracker createInvalidationTracker()
++ void clearAllTables()
+# Map<Class<?>,List<Class<?>>> getRequiredTypeConverters()
++ Set<Class<? extends AutoMigrationSpec>> getRequiredAutoMigrationSpecs()
++ List<Migration> getAutoMigrations(Map<Class<? extends AutoMigrationSpec>,AutoMigrationSpec>)
++ DaoKeranjang daoKeranjang()
++ DaoAlamat daoAlamat()
+}
+class com.example.waroeng_online.adapter.AdapterAlamat {
+- java.util.ArrayList<com.example.waroeng_online.model.Alamat> data
+- com.example.waroeng_online.adapter.AdapterAlamat.Listeners listener
++ java.util.ArrayList<com.example.waroeng_online.model.Alamat> getData()
++ void setData(java.util.ArrayList<com.example.waroeng_online.model.Alamat>)
++ com.example.waroeng_online.adapter.AdapterAlamat.Holder onCreateViewHolder(android.view.ViewGroup,int)
++ void onBindViewHolder(com.example.waroeng_online.adapter.AdapterAlamat.Holder,int)
++ int getItemCount()
+}
+class com.example.waroeng_online.adapter.AdapterAlamat.Holder {
+- android.widget.TextView tvNama
+- android.widget.TextView tvPhone
+- android.widget.TextView tvAlamat
+- androidx.cardview.widget.CardView layout
+- android.widget.RadioButton rd
++ android.widget.TextView getTvNama()
++ android.widget.TextView getTvPhone()
++ android.widget.TextView getTvAlamat()
++ androidx.cardview.widget.CardView getLayout()
++ android.widget.RadioButton getRd()
+}
+interface com.example.waroeng_online.adapter.AdapterAlamat.Listeners {
++ {abstract}void onClicked(com.example.waroeng_online.model.Alamat)
+}
+class com.example.waroeng_online.databinding.FragmentKeranjangBinding {
+- LinearLayout rootView
++ TextView btnBayar
++ ImageView btnDeleteKeranjang
++ CheckBox cbAll
++ RelativeLayout divFooter
++ RecyclerView rvProdukKeranjang
++ TextView tvTotal
++ LinearLayout getRoot()
++ {static} FragmentKeranjangBinding inflate(LayoutInflater)
++ {static} FragmentKeranjangBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} FragmentKeranjangBinding bind(View)
+}
+class com.example.waroeng_online.databinding.ActivityTambahAlamatBinding {
+- LinearLayout rootView
++ Button btnSimpan
++ RelativeLayout divKecamatan
++ RelativeLayout divKota
++ RelativeLayout divProvinsi
++ EditText edtAlamat
++ EditText edtKodePos
++ EditText edtNama
++ EditText edtPhone
++ EditText edtType
++ ProgressBar pb
++ Spinner spnKecamatan
++ Spinner spnKota
++ Spinner spnProvinsi
++ LinearLayout getRoot()
++ {static} ActivityTambahAlamatBinding inflate(LayoutInflater)
++ {static} ActivityTambahAlamatBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityTambahAlamatBinding bind(View)
+}
+class com.example.waroeng_online.databinding.ItemAlamatBinding {
+- CardView rootView
++ CardView layout
++ RadioButton rdAlamat
++ TextView tvAlamat
++ TextView tvNama
++ TextView tvPhone
++ CardView getRoot()
++ {static} ItemAlamatBinding inflate(LayoutInflater)
++ {static} ItemAlamatBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ItemAlamatBinding bind(View)
+}
+class com.example.waroeng_online.model.Bank {
+- java.lang.String nama
+- java.lang.String rekening
+- java.lang.String penerima
+- int image
+- java.lang.String id
++ java.lang.String getNama()
++ void setNama(java.lang.String)
++ java.lang.String getRekening()
++ void setRekening(java.lang.String)
++ java.lang.String getPenerima()
++ void setPenerima(java.lang.String)
++ int getImage()
++ void setImage(int)
++ java.lang.String getId()
++ void setId(java.lang.String)
+}
+class com.example.waroeng_online.databinding.ItemSpinnerBinding {
+- TextView rootView
++ TextView getRoot()
++ {static} ItemSpinnerBinding inflate(LayoutInflater)
++ {static} ItemSpinnerBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ItemSpinnerBinding bind(View)
+}
+class com.example.waroeng_online.model.Alamat {
+- int idTb
+- int id
+- java.lang.String name
+- java.lang.String phone
+- java.lang.String type
+- java.lang.String alamat
+- int id_Provinsi
+- int id_Kota
+- int id_Kecamatan
+- java.lang.String provinsi
+- java.lang.String kota
+- java.lang.String kecamatan
+- java.lang.String kodePos
+- boolean isSelected
++ int getIdTb()
++ void setIdTb(int)
++ int getId()
++ void setId(int)
++ java.lang.String getName()
++ void setName(java.lang.String)
++ java.lang.String getPhone()
++ void setPhone(java.lang.String)
++ java.lang.String getType()
++ void setType(java.lang.String)
++ java.lang.String getAlamat()
++ void setAlamat(java.lang.String)
++ int getId_Provinsi()
++ void setId_Provinsi(int)
++ int getId_Kota()
++ void setId_Kota(int)
++ int getId_Kecamatan()
++ void setId_Kecamatan(int)
++ java.lang.String getProvinsi()
++ void setProvinsi(java.lang.String)
++ java.lang.String getKota()
++ void setKota(java.lang.String)
++ java.lang.String getKecamatan()
++ void setKecamatan(java.lang.String)
++ java.lang.String getKodePos()
++ void setKodePos(java.lang.String)
++ boolean isSelected()
++ void setSelected(boolean)
+}
+class com.example.waroeng_online.databinding.ActivityPengirimanBinding {
+- LinearLayout rootView
++ Button btnBayar
++ Button btnTambahAlamat
++ CardView divAlamat
++ TextView divKosong
++ LinearLayout divMetodePengiriman
++ CardView divPengiriman
++ EditText edtCatatan
++ ImageView img1
++ ImageView img2
++ ImageView img3
++ RecyclerView rvMetode
++ Spinner spnKurir
++ TextView tvAlamat
++ TextView tvKosong
++ TextView tvNama
++ TextView tvOngkir
++ TextView tvPhone
++ TextView tvTotal
++ TextView tvTotalBelanja
++ LinearLayout getRoot()
++ {static} ActivityPengirimanBinding inflate(LayoutInflater)
++ {static} ActivityPengirimanBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityPengirimanBinding bind(View)
+}
+class com.example.waroeng_online.databinding.ActivityBaruBinding {
+- RelativeLayout rootView
++ RelativeLayout getRoot()
++ {static} ActivityBaruBinding inflate(LayoutInflater)
++ {static} ActivityBaruBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityBaruBinding bind(View)
+}
+class com.example.waroeng_online.activity.TambahAlamatActivity {
+- com.example.waroeng_online.model.ModelAlamat.Provinsi provinsi
+- com.example.waroeng_online.model.ModelAlamat.Provinsi kota
++ androidx.appcompat.widget.Toolbar toolbar
++ android.widget.Spinner spnProvinsi
++ android.widget.RelativeLayout divProvinsi
++ android.widget.ProgressBar pb
++ android.widget.Spinner spnKota
++ android.widget.RelativeLayout divKota
+- android.widget.Button btnSimpan
+- android.widget.EditText edtNama
+- android.widget.EditText edtPhone
+- android.widget.EditText edtAlamat
+- android.widget.EditText edtType
+- android.widget.EditText edtKodePos
++ com.example.waroeng_online.model.ModelAlamat.Provinsi getProvinsi()
++ void setProvinsi(com.example.waroeng_online.model.ModelAlamat.Provinsi)
++ com.example.waroeng_online.model.ModelAlamat.Provinsi getKota()
++ void setKota(com.example.waroeng_online.model.ModelAlamat.Provinsi)
++ androidx.appcompat.widget.Toolbar getToolbar()
++ void setToolbar(androidx.appcompat.widget.Toolbar)
++ android.widget.Spinner getSpnProvinsi()
++ void setSpnProvinsi(android.widget.Spinner)
++ android.widget.RelativeLayout getDivProvinsi()
++ void setDivProvinsi(android.widget.RelativeLayout)
++ android.widget.ProgressBar getPb()
++ void setPb(android.widget.ProgressBar)
++ android.widget.Spinner getSpnKota()
++ void setSpnKota(android.widget.Spinner)
++ android.widget.RelativeLayout getDivKota()
++ void setDivKota(android.widget.RelativeLayout)
+# void onCreate(android.os.Bundle)
+- void mainButton()
+- void simpan()
+- void toast(java.lang.String)
+- void error(android.widget.EditText)
+- void getProvinsi()
+- void getKota(java.lang.String)
+- void insert(com.example.waroeng_online.model.Alamat)
++ boolean onSupportNavigateUp()
+}
+class com.example.waroeng_online.activity.ListAlamatActivity {
+- android.widget.Button btnBuatAlamat
++ androidx.appcompat.widget.Toolbar toolbar
+- android.widget.LinearLayout divKosong
+- androidx.recyclerview.widget.RecyclerView rvAlamat
++ com.example.waroeng_online.room.MyDatabase myDb
++ androidx.appcompat.widget.Toolbar getToolbar()
++ void setToolbar(androidx.appcompat.widget.Toolbar)
++ com.example.waroeng_online.room.MyDatabase getMyDb()
++ void setMyDb(com.example.waroeng_online.room.MyDatabase)
+# void onCreate(android.os.Bundle)
+- void displayAlamat()
+- void updateActive(com.example.waroeng_online.model.Alamat,com.example.waroeng_online.model.Alamat)
+- void updateNonActive(com.example.waroeng_online.model.Alamat)
+# void onResume()
+- void mainButton()
++ boolean onSupportNavigateUp()
+}
+class com.example.waroeng_online.databinding.FragmentAkunBinding {
+- RelativeLayout rootView
++ TextView btnLogout
++ RelativeLayout btnRiwayat
++ ImageView imageProfile
++ TextView tvEmail
++ TextView tvInisial
++ TextView tvNama
++ RelativeLayout getRoot()
++ {static} FragmentAkunBinding inflate(LayoutInflater)
++ {static} FragmentAkunBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} FragmentAkunBinding bind(View)
+}
+class com.example.waroeng_online.databinding.ActivityDetailTransaksiBinding {
+- LinearLayout rootView
++ Button btnBatal
++ Button btnBayar
++ LinearLayout divFooter
++ RecyclerView rvProduk
++ TextView tvAlamat
++ TextView tvKodeUnik
++ TextView tvOngkir
++ TextView tvPenerima
++ TextView tvStatus
++ TextView tvTgl
++ TextView tvTotal
++ TextView tvTotalBelanja
++ LinearLayout getRoot()
++ {static} ActivityDetailTransaksiBinding inflate(LayoutInflater)
++ {static} ActivityDetailTransaksiBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityDetailTransaksiBinding bind(View)
+}
+class com.example.waroeng_online.databinding.ActivityRiwayatBinding {
+- LinearLayout rootView
++ RecyclerView rvRiwayat
++ LinearLayout getRoot()
++ {static} ActivityRiwayatBinding inflate(LayoutInflater)
++ {static} ActivityRiwayatBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityRiwayatBinding bind(View)
+}
+class com.example.waroeng_online.activity.RegisActivity {
+- android.widget.Button btnregis
+- android.widget.EditText edtnama
+- android.widget.EditText edtemail
+- android.widget.EditText edtphone
+- android.widget.EditText edtpassword
++ com.example.waroeng_online.helper.Sharedpref s
++ android.widget.ProgressBar progress
+- java.lang.String fcm
++ com.example.waroeng_online.helper.Sharedpref getS()
++ void setS(com.example.waroeng_online.helper.Sharedpref)
++ android.widget.ProgressBar getProgress()
++ void setProgress(android.widget.ProgressBar)
+# void onCreate(android.os.Bundle)
+- void getFcm()
+- void register()
+}
+class com.example.waroeng_online.helper.Helper {
++ java.lang.String gantiRupiah(java.lang.String)
++ java.lang.String gantiRupiah(int)
++ java.lang.String gantiRupiah(boolean)
++ void setToolbar(android.app.Activity,androidx.appcompat.widget.Toolbar,java.lang.String)
++ java.lang.String convertTanggal(java.lang.String,java.lang.String,java.lang.String)
+}
+class com.example.waroeng_online.activity.RiwayatActivity {
++ androidx.appcompat.widget.Toolbar toolbar
+- androidx.recyclerview.widget.RecyclerView rvRiwayat
++ androidx.appcompat.widget.Toolbar getToolbar()
++ void setToolbar(androidx.appcompat.widget.Toolbar)
+# void onCreate(android.os.Bundle)
+- void getRiwayat()
++ void displayRiwayat(java.util.ArrayList<com.example.waroeng_online.model.Transaksi>)
+# void onResume()
++ boolean onSupportNavigateUp()
+}
+class com.example.waroeng_online.model.Transaksi {
+- int id
+- java.lang.String bank
+- java.lang.String jasa_pengiriman
+- java.lang.String kurir
+- java.lang.String name
+- java.lang.String ongkir
+- java.lang.String phone
+- java.lang.String total_harga
+- java.lang.String total_item
+- java.lang.String total_transfer
+- java.lang.String detail_lokasi
+- java.lang.String user_id
+- java.lang.String kode_payment
+- java.lang.String kode_trx
+- int kode_unik
+- java.lang.String status
+- java.lang.String expired_at
+- java.lang.String updated_at
+- java.lang.String created_at
+- java.util.ArrayList<com.example.waroeng_online.model.DetailTransaksi> details
++ int getId()
++ void setId(int)
++ java.lang.String getBank()
++ void setBank(java.lang.String)
++ java.lang.String getJasa_pengiriman()
++ void setJasa_pengiriman(java.lang.String)
++ java.lang.String getKurir()
++ void setKurir(java.lang.String)
++ java.lang.String getName()
++ void setName(java.lang.String)
++ java.lang.String getOngkir()
++ void setOngkir(java.lang.String)
++ java.lang.String getPhone()
++ void setPhone(java.lang.String)
++ java.lang.String getTotal_harga()
++ void setTotal_harga(java.lang.String)
++ java.lang.String getTotal_item()
++ void setTotal_item(java.lang.String)
++ java.lang.String getTotal_transfer()
++ void setTotal_transfer(java.lang.String)
++ java.lang.String getDetail_lokasi()
++ void setDetail_lokasi(java.lang.String)
++ java.lang.String getUser_id()
++ void setUser_id(java.lang.String)
++ java.lang.String getKode_payment()
++ void setKode_payment(java.lang.String)
++ java.lang.String getKode_trx()
++ void setKode_trx(java.lang.String)
++ int getKode_unik()
++ void setKode_unik(int)
++ java.lang.String getStatus()
++ void setStatus(java.lang.String)
++ java.lang.String getExpired_at()
++ void setExpired_at(java.lang.String)
++ java.lang.String getUpdated_at()
++ void setUpdated_at(java.lang.String)
++ java.lang.String getCreated_at()
++ void setCreated_at(java.lang.String)
++ java.util.ArrayList<com.example.waroeng_online.model.DetailTransaksi> getDetails()
+}
+class com.example.waroeng_online.databinding.ToolbarCustomBinding {
+- AppBarLayout rootView
++ RelativeLayout btnKeranjangToolbar
++ RelativeLayout divAngka
++ ImageView img
++ Toolbar toolbarCustom
++ TextView tvAngka
++ AppBarLayout getRoot()
++ {static} ToolbarCustomBinding inflate(LayoutInflater)
++ {static} ToolbarCustomBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ToolbarCustomBinding bind(View)
+}
+class com.example.waroeng_online.databinding.ItemKurirBinding {
+- LinearLayout rootView
++ LinearLayout layout
++ RadioButton rd
++ TextView tvBerat
++ TextView tvHarga
++ TextView tvLamaPengiriman
++ TextView tvNama
++ LinearLayout getRoot()
++ {static} ItemKurirBinding inflate(LayoutInflater)
++ {static} ItemKurirBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ItemKurirBinding bind(View)
+}
+class com.example.waroeng_online.room.DaoAlamat_Impl {
+- RoomDatabase __db
+- EntityInsertionAdapter<Alamat> __insertionAdapterOfAlamat
+- EntityDeletionOrUpdateAdapter<Alamat> __deletionAdapterOfAlamat
+- EntityDeletionOrUpdateAdapter<Alamat> __updateAdapterOfAlamat
+- SharedSQLiteStatement __preparedStmtOfDeleteAll
++ void insert(Alamat)
++ void delete(Alamat)
++ int update(Alamat)
++ int deleteAll()
++ List<Alamat> getAll()
++ Alamat getByStatus(boolean)
++ {static} List<Class<?>> getRequiredConverters()
+}
+class com.example.waroeng_online.adapter.AdapterKurir {
+- java.util.ArrayList<com.example.waroeng_online.model.rajaongkir.Costs> data
+- java.lang.String kurir
+- com.example.waroeng_online.adapter.AdapterKurir.Listeners listener
++ java.util.ArrayList<com.example.waroeng_online.model.rajaongkir.Costs> getData()
++ void setData(java.util.ArrayList<com.example.waroeng_online.model.rajaongkir.Costs>)
++ com.example.waroeng_online.adapter.AdapterKurir.Holder onCreateViewHolder(android.view.ViewGroup,int)
++ void onBindViewHolder(com.example.waroeng_online.adapter.AdapterKurir.Holder,int)
++ int getItemCount()
+}
+class com.example.waroeng_online.adapter.AdapterKurir.Holder {
+- android.widget.TextView tvNama
+- android.widget.TextView tvLamaPengiriman
+- android.widget.TextView tvBerat
+- android.widget.TextView tvHarga
+- android.widget.LinearLayout layout
+- android.widget.RadioButton rd
++ android.widget.TextView getTvNama()
++ android.widget.TextView getTvLamaPengiriman()
++ android.widget.TextView getTvBerat()
++ android.widget.TextView getTvHarga()
++ android.widget.LinearLayout getLayout()
++ android.widget.RadioButton getRd()
+}
+interface com.example.waroeng_online.adapter.AdapterKurir.Listeners {
++ {abstract}void onClicked(com.example.waroeng_online.model.rajaongkir.Costs,int)
+}
+class com.example.waroeng_online.model.ModelAlamat {
+- int id
+- java.lang.String nama
+- com.example.waroeng_online.model.ModelAlamat.Status status
+- java.util.ArrayList<com.example.waroeng_online.model.ModelAlamat.Provinsi> results
++ int getId()
++ java.lang.String getNama()
++ com.example.waroeng_online.model.ModelAlamat.Status getStatus()
++ java.util.ArrayList<com.example.waroeng_online.model.ModelAlamat.Provinsi> getResults()
+}
+class com.example.waroeng_online.model.ModelAlamat.Status {
+- int code
+- java.lang.String description
++ int getCode()
++ java.lang.String getDescription()
+}
+class com.example.waroeng_online.model.ModelAlamat.Provinsi {
+- java.lang.String province_id
+- java.lang.String province
+- java.lang.String city_id
+- java.lang.String city_name
+- java.lang.String postal_code
+- java.lang.String type
++ java.lang.String getProvince_id()
++ java.lang.String getProvince()
++ java.lang.String getCity_id()
++ java.lang.String getCity_name()
++ java.lang.String getPostal_code()
++ java.lang.String getType()
+}
+class com.example.waroeng_online.adapter.AdapterKeranjang {
+- android.app.Activity activity
+- java.util.ArrayList<com.example.waroeng_online.model.Produk> data
+- com.example.waroeng_online.adapter.AdapterKeranjang.Listeners listener
++ android.app.Activity getActivity()
++ void setActivity(android.app.Activity)
++ com.example.waroeng_online.adapter.AdapterKeranjang.Holder onCreateViewHolder(android.view.ViewGroup,int)
++ void onBindViewHolder(com.example.waroeng_online.adapter.AdapterKeranjang.Holder,int)
+- void update(com.example.waroeng_online.model.Produk)
+- void delete(com.example.waroeng_online.model.Produk)
++ int getItemCount()
+}
+class com.example.waroeng_online.adapter.AdapterKeranjang.Holder {
+- android.widget.TextView tvNama
+- android.widget.TextView tvHarga
+- android.widget.ImageView imgProduk
+- androidx.cardview.widget.CardView layout
+- android.widget.ImageView btnTambah
+- android.widget.ImageView btnKurang
+- android.widget.ImageView btnDelete
+- android.widget.CheckBox checkbox
+- android.widget.TextView tvjumlah
++ android.widget.TextView getTvNama()
++ android.widget.TextView getTvHarga()
++ android.widget.ImageView getImgProduk()
++ androidx.cardview.widget.CardView getLayout()
++ android.widget.ImageView getBtnTambah()
++ android.widget.ImageView getBtnKurang()
++ android.widget.ImageView getBtnDelete()
++ android.widget.CheckBox getCheckbox()
++ android.widget.TextView getTvjumlah()
+}
+interface com.example.waroeng_online.adapter.AdapterKeranjang.Listeners {
++ {abstract}void onUpdate()
++ {abstract}void onDelete(int)
+}
+class com.example.waroeng_online.activity.PembayaranActivity {
+- androidx.recyclerview.widget.RecyclerView rvData
++ androidx.appcompat.widget.Toolbar toolbar
++ androidx.appcompat.widget.Toolbar getToolbar()
++ void setToolbar(androidx.appcompat.widget.Toolbar)
+# void onCreate(android.os.Bundle)
+- void displayBank()
+- void bayar(com.example.waroeng_online.model.Bank)
++ void error(java.lang.String)
++ boolean onSupportNavigateUp()
+}
+class com.example.waroeng_online.model.rajaongkir.Cost {
+- java.lang.String value
+- java.lang.String etd
+- java.lang.String note
++ java.lang.String getValue()
++ java.lang.String getEtd()
++ java.lang.String getNote()
+}
+class com.example.waroeng_online.model.Produk {
++ int idTb
++ int id
++ String name
++ String harga
++ String deskripsi
++ int category_id
++ String image
++ String created_at
++ String updated_at
++ int jumlah
++ boolean selected
+}
+class error.NonExistentClass {
+}
+class com.example.waroeng_online.fragment.HomeFragment {
+- androidx.recyclerview.widget.RecyclerView rvProduk
+- androidx.recyclerview.widget.RecyclerView rvProduklaris
+- androidx.recyclerview.widget.RecyclerView rvElektronik
+- android.widget.TextView tvTitle
+- java.util.ArrayList<com.example.waroeng_online.model.Produk> listProduk
++ android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)
++ void displayProduk()
+- void getProduk()
+- void init(android.view.View)
+}
+class com.example.waroeng_online.util.Config {
++ {static} com.example.waroeng_online.util.Config INSTANCE
++ {static} java.lang.String baseUrl
++ {static} java.lang.String produkUrl
+}
+class com.example.waroeng_online.activity.MasukActivity {
+- com.example.waroeng_online.helper.Sharedpref s
+- android.widget.Button btnl
+- android.widget.Button btnr
+# void onCreate(android.os.Bundle)
+- void mainButton()
+}
+class com.example.waroeng_online.MainActivity {
+- androidx.fragment.app.Fragment fragmentHome
+- androidx.fragment.app.Fragment fragmentAkun
+- androidx.fragment.app.Fragment fragmentKeranjang
+- androidx.fragment.app.FragmentManager fm
+- androidx.fragment.app.Fragment active
+- android.view.Menu menu
+- android.view.MenuItem menuItem
+- com.google.android.material.bottomnavigation.BottomNavigationView bottomNavigationView
+- com.example.waroeng_online.helper.Sharedpref s
+- boolean dariDetail
+- android.content.BroadcastReceiver mMessage
+# void onCreate(android.os.Bundle)
+- void setUpbottomnav()
+- void callFragment(int,androidx.fragment.app.Fragment)
+# void onResume()
+}
+class com.example.waroeng_online.activity.LoginActivity {
++ com.example.waroeng_online.helper.Sharedpref s
+- android.widget.Button btnl
+- android.widget.EditText edtemail
+- android.widget.EditText edtpassword
++ android.widget.ProgressBar progress
+- java.lang.String fcm
++ com.example.waroeng_online.helper.Sharedpref getS()
++ void setS(com.example.waroeng_online.helper.Sharedpref)
++ android.widget.ProgressBar getProgress()
++ void setProgress(android.widget.ProgressBar)
+# void onCreate(android.os.Bundle)
+- void getFcm()
+- void login()
+}
+class com.example.waroeng_online.activity.DetailProdukActivity {
+- android.widget.TextView tvNama
+- android.widget.TextView tvHarga
+- android.widget.ImageView image
+- android.widget.TextView tvdeskripsi
+- androidx.appcompat.widget.Toolbar toolbar
+- android.widget.RelativeLayout btnkeranjang
++ com.example.waroeng_online.model.Produk produk
+- com.example.waroeng_online.room.MyDatabase myDb
+- android.widget.RelativeLayout divAngka
+- android.widget.TextView tvAngka
+- android.widget.ImageView img
+- android.widget.RelativeLayout btnkeranjangTool
+- android.widget.RelativeLayout btnBeliSekarang
+- java.util.ArrayList<com.example.waroeng_online.model.Produk> listProduk
++ com.example.waroeng_online.model.Produk getProduk()
++ void setProduk(com.example.waroeng_online.model.Produk)
+# void onCreate(android.os.Bundle)
+- void mainButton()
+- void insert()
+- void update(com.example.waroeng_online.model.Produk)
+- void checkKeranjang()
+- void getInfo()
+- void getProduk()
++ boolean onSupportNavigateUp()
+}
+class com.example.waroeng_online.databinding.ViewUploadBinding {
+- LinearLayout rootView
++ Button btnImageLain
++ Button btnUpload
++ ImageView image
++ LinearLayout getRoot()
++ {static} ViewUploadBinding inflate(LayoutInflater)
++ {static} ViewUploadBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ViewUploadBinding bind(View)
+}
+class com.example.waroeng_online.databinding.ItemSliderBinding {
+- RelativeLayout rootView
++ ImageView image
++ RelativeLayout getRoot()
++ {static} ItemSliderBinding inflate(LayoutInflater)
++ {static} ItemSliderBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ItemSliderBinding bind(View)
+}
+class com.example.waroeng_online.fragment.KeranjangFragment {
+- com.example.waroeng_online.room.MyDatabase myDb
+- com.example.waroeng_online.helper.Sharedpref s
++ com.example.waroeng_online.adapter.AdapterKeranjang adapter
+- java.util.ArrayList<com.example.waroeng_online.model.Produk> listProduk
+- int totalHarga
+- android.widget.ImageView btnDelete
+- androidx.recyclerview.widget.RecyclerView rvProduk
+- android.widget.TextView tvTotal
+- android.widget.TextView btnBayar
+- android.widget.CheckBox cbAll
++ android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)
++ com.example.waroeng_online.adapter.AdapterKeranjang getAdapter()
++ void setAdapter(com.example.waroeng_online.adapter.AdapterKeranjang)
++ java.util.ArrayList<com.example.waroeng_online.model.Produk> getListProduk()
++ void setListProduk(java.util.ArrayList<com.example.waroeng_online.model.Produk>)
+- void displayProduk()
++ void hitungTotal()
+- void mainButton()
+- void delete(java.util.ArrayList<com.example.waroeng_online.model.Produk>)
+- void init(android.view.View)
++ void onResume()
+}
+class com.example.waroeng_online.app.ApiConfig {
++ {static} com.example.waroeng_online.app.ApiConfig INSTANCE
+- {static} java.lang.String BASE_URL
+- retrofit2.Retrofit getClient()
++ com.example.waroeng_online.app.ApiService getInstanceRetrofit()
+}
+interface com.example.waroeng_online.app.ApiService {
++ {abstract}retrofit2.Call<com.example.waroeng_online.model.ResponModel> register(java.lang.String,java.lang.String,java.lang.String,java.lang.String,java.lang.String)
++ {abstract}retrofit2.Call<com.example.waroeng_online.model.ResponModel> login(java.lang.String,java.lang.String,java.lang.String)
++ {abstract}retrofit2.Call<com.example.waroeng_online.model.ResponModel> checkout(com.example.waroeng_online.model.Checkout)
++ {abstract}retrofit2.Call<com.example.waroeng_online.model.ResponModel> getProduk()
++ {abstract}retrofit2.Call<com.example.waroeng_online.model.ResponModel> getProvinsi(java.lang.String)
++ {abstract}retrofit2.Call<com.example.waroeng_online.model.ResponModel> getKota(java.lang.String,java.lang.String)
++ {abstract}retrofit2.Call<com.example.waroeng_online.model.rajaongkir.ResponOngkir> ongkir(java.lang.String,java.lang.String,java.lang.String,int,java.lang.String)
++ {abstract}retrofit2.Call<com.example.waroeng_online.model.ResponModel> getRiwayat(int)
++ {abstract}retrofit2.Call<com.example.waroeng_online.model.ResponModel> batalCheckout(int)
++ {abstract}retrofit2.Call<com.example.waroeng_online.model.ResponModel> uploadBukti(int,okhttp3.MultipartBody.Part)
++ {abstract}retrofit2.Call<com.example.waroeng_online.model.ResponModel> uploadUser(int,okhttp3.MultipartBody.Part)
+}
+class com.example.waroeng_online.app.ApiService.DefaultImpls {
+}
+class com.example.waroeng_online.activity.DetailTransaksiActivity {
+- android.widget.TextView tvPenerima
+- android.widget.TextView tvAlamat
+- android.widget.TextView tvKodeUnik
+- android.widget.TextView tvTotalBelanja
+- android.widget.TextView tvOngkir
+- android.widget.TextView tvTotal
+- android.widget.TextView tvStatus
+- android.widget.TextView tvTGL
+- androidx.recyclerview.widget.RecyclerView rvProduk
++ androidx.appcompat.widget.Toolbar toolbar
+- android.widget.Button btnBatal
+- android.widget.LinearLayout divFooter
+- android.widget.Button btnBayar
+- android.widget.TextView tvCatatan
+- com.example.waroeng_online.model.Transaksi transaksi
+- androidx.activity.result.ActivityResultLauncher<android.content.Intent> launcher
+- android.app.AlertDialog alertDialog
++ androidx.appcompat.widget.Toolbar getToolbar()
++ void setToolbar(androidx.appcompat.widget.Toolbar)
+# void onCreate(android.os.Bundle)
+- void mainButton()
+- void imagePicker()
++ android.app.AlertDialog getAlertDialog()
++ void setAlertDialog(android.app.AlertDialog)
+- void dialogUpload(java.io.File)
+- void upload(java.io.File)
+- void batalTransaksi()
++ void error(java.lang.String)
++ void setData(com.example.waroeng_online.model.Transaksi)
+- void displayProduk(java.util.ArrayList<com.example.waroeng_online.model.DetailTransaksi>)
++ boolean onSupportNavigateUp()
+}
+class com.example.waroeng_online.databinding.ActivityPembayaranBinding {
+- LinearLayout rootView
++ ImageView img1
++ ImageView img2
++ ImageView img3
++ RecyclerView rvData
++ LinearLayout getRoot()
++ {static} ActivityPembayaranBinding inflate(LayoutInflater)
++ {static} ActivityPembayaranBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityPembayaranBinding bind(View)
+}
+class com.example.waroeng_online.model.ResponModel {
+- int success
++ java.lang.String message
+- com.example.waroeng_online.model.User user
+- java.util.ArrayList<com.example.waroeng_online.model.Produk> produks
+- java.util.ArrayList<com.example.waroeng_online.model.Transaksi> Transaksis
+- com.example.waroeng_online.model.ModelAlamat rajaongkir
+- com.example.waroeng_online.model.Transaksi Transaksi
+- java.util.ArrayList<com.example.waroeng_online.model.ModelAlamat> provinsi
+- java.util.ArrayList<com.example.waroeng_online.model.ModelAlamat> kota_kabupaten
+- java.util.ArrayList<com.example.waroeng_online.model.ModelAlamat> kecamatan
++ int getSuccess()
++ void setSuccess(int)
++ java.lang.String getMessage()
++ void setMessage(java.lang.String)
++ com.example.waroeng_online.model.User getUser()
++ void setUser(com.example.waroeng_online.model.User)
++ java.util.ArrayList<com.example.waroeng_online.model.Produk> getProduks()
++ void setProduks(java.util.ArrayList<com.example.waroeng_online.model.Produk>)
++ java.util.ArrayList<com.example.waroeng_online.model.Transaksi> getTransaksis()
++ void setTransaksis(java.util.ArrayList<com.example.waroeng_online.model.Transaksi>)
++ com.example.waroeng_online.model.ModelAlamat getRajaongkir()
++ void setRajaongkir(com.example.waroeng_online.model.ModelAlamat)
++ com.example.waroeng_online.model.Transaksi getTransaksi()
++ void setTransaksi(com.example.waroeng_online.model.Transaksi)
++ java.util.ArrayList<com.example.waroeng_online.model.ModelAlamat> getProvinsi()
++ void setProvinsi(java.util.ArrayList<com.example.waroeng_online.model.ModelAlamat>)
++ java.util.ArrayList<com.example.waroeng_online.model.ModelAlamat> getKota_kabupaten()
++ void setKota_kabupaten(java.util.ArrayList<com.example.waroeng_online.model.ModelAlamat>)
++ java.util.ArrayList<com.example.waroeng_online.model.ModelAlamat> getKecamatan()
++ void setKecamatan(java.util.ArrayList<com.example.waroeng_online.model.ModelAlamat>)
+}
+class com.example.waroeng_online.adapter.AdapterProdukTransaksi {
+- java.util.ArrayList<com.example.waroeng_online.model.DetailTransaksi> data
++ java.util.ArrayList<com.example.waroeng_online.model.DetailTransaksi> getData()
++ void setData(java.util.ArrayList<com.example.waroeng_online.model.DetailTransaksi>)
++ com.example.waroeng_online.adapter.AdapterProdukTransaksi.Holder onCreateViewHolder(android.view.ViewGroup,int)
++ void onBindViewHolder(com.example.waroeng_online.adapter.AdapterProdukTransaksi.Holder,int)
++ int getItemCount()
+}
+class com.example.waroeng_online.adapter.AdapterProdukTransaksi.Holder {
+- android.widget.ImageView imgProduk
+- android.widget.TextView tvNama
+- android.widget.TextView tvHarga
+- android.widget.TextView tvTotalHarga
+- android.widget.TextView tvJumlah
+- androidx.cardview.widget.CardView layout
++ android.widget.ImageView getImgProduk()
++ android.widget.TextView getTvNama()
++ android.widget.TextView getTvHarga()
++ android.widget.TextView getTvTotalHarga()
++ android.widget.TextView getTvJumlah()
++ androidx.cardview.widget.CardView getLayout()
+}
+interface com.example.waroeng_online.adapter.AdapterProdukTransaksi.Listeners {
++ {abstract}void onClicked(com.example.waroeng_online.model.DetailTransaksi)
+}
+class com.example.waroeng_online.databinding.FragmentHomeBinding {
+- LinearLayout rootView
++ RecyclerView rvElektronik
++ RecyclerView rvProduk
++ RecyclerView rvProduklaris
++ LinearLayout getRoot()
++ {static} FragmentHomeBinding inflate(LayoutInflater)
++ {static} FragmentHomeBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} FragmentHomeBinding bind(View)
+}
+class com.example.waroeng_online.model.Checkout {
++ java.lang.String user_id
++ java.lang.String total_item
++ java.lang.String total_harga
++ java.lang.String name
++ java.lang.String phone
++ java.lang.String kurir
++ java.lang.String detail_lokasi
++ java.lang.String jasa_pengiriman
++ java.lang.String ongkir
++ java.lang.String total_transfer
++ java.lang.String bank
+- java.util.ArrayList<com.example.waroeng_online.model.Checkout.Item> produks
++ java.lang.String getUser_id()
++ void setUser_id(java.lang.String)
++ java.lang.String getTotal_item()
++ void setTotal_item(java.lang.String)
++ java.lang.String getTotal_harga()
++ void setTotal_harga(java.lang.String)
++ java.lang.String getName()
++ void setName(java.lang.String)
++ java.lang.String getPhone()
++ void setPhone(java.lang.String)
++ java.lang.String getKurir()
++ void setKurir(java.lang.String)
++ java.lang.String getDetail_lokasi()
++ void setDetail_lokasi(java.lang.String)
++ java.lang.String getJasa_pengiriman()
++ void setJasa_pengiriman(java.lang.String)
++ java.lang.String getOngkir()
++ void setOngkir(java.lang.String)
++ java.lang.String getTotal_transfer()
++ void setTotal_transfer(java.lang.String)
++ java.lang.String getBank()
++ void setBank(java.lang.String)
++ java.util.ArrayList<com.example.waroeng_online.model.Checkout.Item> getProduks()
++ void setProduks(java.util.ArrayList<com.example.waroeng_online.model.Checkout.Item>)
+}
+class com.example.waroeng_online.model.Checkout.Item {
++ java.lang.String id
++ java.lang.String total_item
++ java.lang.String total_harga
++ java.lang.String catatan
++ java.lang.String getId()
++ void setId(java.lang.String)
++ java.lang.String getTotal_item()
++ void setTotal_item(java.lang.String)
++ java.lang.String getTotal_harga()
++ void setTotal_harga(java.lang.String)
++ java.lang.String getCatatan()
++ void setCatatan(java.lang.String)
+}
+class com.example.waroeng_online.databinding.ActivityRegisBinding {
+- RelativeLayout rootView
++ Button btnRegister
++ EditText edtEmail
++ EditText edtNama
++ EditText edtPassword
++ EditText edtPhone
++ ProgressBar pb
++ RelativeLayout getRoot()
++ {static} ActivityRegisBinding inflate(LayoutInflater)
++ {static} ActivityRegisBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityRegisBinding bind(View)
+}
+class com.example.waroeng_online.model.User {
++ java.lang.String email
++ java.lang.String name
++ java.lang.String Phone
+- java.lang.String image
+- int id
++ java.lang.String getEmail()
++ void setEmail(java.lang.String)
++ java.lang.String getName()
++ void setName(java.lang.String)
++ java.lang.String getPhone()
++ void setPhone(java.lang.String)
++ java.lang.String getImage()
++ int getId()
++ void setId(int)
+}
+class com.example.waroeng_online.databinding.ItemKeranjangBinding {
+- CardView rootView
++ ImageView btnDeleteKeranjangItem
++ ImageView btnKurang
++ ImageView btnTambah
++ CheckBox checkBox
++ ImageView imgProdukKeranjang
++ CardView layoutKeranjang
++ TextView tvHargaKeranjang
++ TextView tvJumlah
++ TextView tvNamaKeranjang
++ CardView getRoot()
++ {static} ItemKeranjangBinding inflate(LayoutInflater)
++ {static} ItemKeranjangBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ItemKeranjangBinding bind(View)
+}
+class com.example.waroeng_online.databinding.ActivityLoginBinding {
+- RelativeLayout rootView
++ Button btnLogin
++ EditText edtEmaillog
++ EditText edtPasswordlog
++ ProgressBar pb
++ RelativeLayout getRoot()
++ {static} ActivityLoginBinding inflate(LayoutInflater)
++ {static} ActivityLoginBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityLoginBinding bind(View)
+}
+class com.example.waroeng_online.firebase.MyFirebaseMessagingService {
+- java.lang.String TAG
++ void onMessageReceived(com.google.firebase.messaging.RemoteMessage)
+- void sendNotification(java.lang.String,java.lang.String)
+}
+class com.example.waroeng_online.adapter.AdapterBank {
+- java.util.ArrayList<com.example.waroeng_online.model.Bank> data
+- com.example.waroeng_online.adapter.AdapterBank.Listeners listener
++ java.util.ArrayList<com.example.waroeng_online.model.Bank> getData()
++ void setData(java.util.ArrayList<com.example.waroeng_online.model.Bank>)
++ com.example.waroeng_online.adapter.AdapterBank.Holder onCreateViewHolder(android.view.ViewGroup,int)
++ void onBindViewHolder(com.example.waroeng_online.adapter.AdapterBank.Holder,int)
++ int getItemCount()
+}
+class com.example.waroeng_online.adapter.AdapterBank.Holder {
+- android.widget.TextView tvNama
+- android.widget.ImageView image
+- android.widget.LinearLayout layout
++ android.widget.TextView getTvNama()
++ android.widget.ImageView getImage()
++ android.widget.LinearLayout getLayout()
+}
+interface com.example.waroeng_online.adapter.AdapterBank.Listeners {
++ {abstract}void onClicked(com.example.waroeng_online.model.Bank,int)
+}
+class com.example.waroeng_online.activity.BaruActivity {
+# void onCreate(android.os.Bundle)
+}
+class com.example.waroeng_online.adapter.AdapterRiwayat {
+- java.util.ArrayList<com.example.waroeng_online.model.Transaksi> data
+- com.example.waroeng_online.adapter.AdapterRiwayat.Listeners listener
++ android.content.Context context
++ java.util.ArrayList<com.example.waroeng_online.model.Transaksi> getData()
++ void setData(java.util.ArrayList<com.example.waroeng_online.model.Transaksi>)
++ android.content.Context getContext()
++ void setContext(android.content.Context)
++ com.example.waroeng_online.adapter.AdapterRiwayat.Holder onCreateViewHolder(android.view.ViewGroup,int)
++ void onBindViewHolder(com.example.waroeng_online.adapter.AdapterRiwayat.Holder,int)
++ int getItemCount()
+}
+class com.example.waroeng_online.adapter.AdapterRiwayat.Holder {
+- android.widget.TextView tvNama
+- android.widget.TextView tvHarga
+- android.widget.TextView tvTanggal
+- android.widget.TextView tvJumlah
+- android.widget.TextView tvStatus
+- androidx.cardview.widget.CardView layout
++ android.widget.TextView getTvNama()
++ android.widget.TextView getTvHarga()
++ android.widget.TextView getTvTanggal()
++ android.widget.TextView getTvJumlah()
++ android.widget.TextView getTvStatus()
++ androidx.cardview.widget.CardView getLayout()
+}
+interface com.example.waroeng_online.adapter.AdapterRiwayat.Listeners {
++ {abstract}void onClicked(com.example.waroeng_online.model.Transaksi)
+}
+class com.example.waroeng_online.databinding.ActivityMasukBinding {
+- RelativeLayout rootView
++ Button btnLogin
++ Button btnRegis
++ RelativeLayout getRoot()
++ {static} ActivityMasukBinding inflate(LayoutInflater)
++ {static} ActivityMasukBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityMasukBinding bind(View)
+}
+class com.example.waroeng_online.databinding.ActivityListAlamatBinding {
+- LinearLayout rootView
++ Button btnBuatAlamat
++ LinearLayout divKosong
++ RecyclerView rvAlamat
++ LinearLayout getRoot()
++ {static} ActivityListAlamatBinding inflate(LayoutInflater)
++ {static} ActivityListAlamatBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityListAlamatBinding bind(View)
+}
+interface com.example.waroeng_online.room.DaoAlamat {
++ {abstract}void insert(com.example.waroeng_online.model.Alamat)
++ {abstract}void delete(com.example.waroeng_online.model.Alamat)
++ {abstract}int update(com.example.waroeng_online.model.Alamat)
++ {abstract}java.util.List<com.example.waroeng_online.model.Alamat> getAll()
++ {abstract}com.example.waroeng_online.model.Alamat getByStatus(boolean)
++ {abstract}int deleteAll()
+}
+class com.example.waroeng_online.model.DetailTransaksi {
+- int total_item
+- int total_harga
+- com.example.waroeng_online.model.Produk produk
++ int getTotal_item()
++ void setTotal_item(int)
++ int getTotal_harga()
++ void setTotal_harga(int)
++ com.example.waroeng_online.model.Produk getProduk()
++ void setProduk(com.example.waroeng_online.model.Produk)
+}
+class com.example.waroeng_online.fragment.AkunFragment {
+- com.example.waroeng_online.helper.Sharedpref s
+- android.widget.TextView btnLogout
+- android.widget.TextView tvNama
+- android.widget.TextView tvEmail
+- android.widget.TextView tvInisial
+- android.widget.ImageView imageProfil
+- android.widget.RelativeLayout btnRiwayat
+- androidx.activity.result.ActivityResultLauncher<android.content.Intent> launcher
+- android.app.AlertDialog alertDialog
++ android.view.View onCreateView(android.view.LayoutInflater,android.view.ViewGroup,android.os.Bundle)
+- void mainButton()
+- void setData()
+- void imagePicker()
++ android.app.AlertDialog getAlertDialog()
++ void setAlertDialog(android.app.AlertDialog)
+- void dialogUpload(java.io.File)
+- void upload(java.io.File)
+- void init(android.view.View)
++ void onResume()
+}
+class com.example.waroeng_online.helper.Sharedpref {
+- java.lang.String mypref
+- android.content.SharedPreferences sp
+- java.lang.String login
+- java.lang.String name
+- java.lang.String user
++ java.lang.String getName()
++ void setStatuslogin(boolean)
++ boolean getStatusLogin()
++ void setUser(com.example.waroeng_online.model.User)
++ com.example.waroeng_online.model.User getUser()
+}
+class com.example.waroeng_online.activity.SuccessActivity {
+- android.widget.TextView tvNomorRekening
+- android.widget.TextView tvNamaPenerima
+- android.widget.ImageView imageBank
+- android.widget.TextView tvNominal
++ androidx.appcompat.widget.Toolbar toolbar
+- android.widget.ImageView btnCopyNorek
+- android.widget.ImageView btnCopyNominal
+- android.widget.Button btnCekStatus
+- int nominal
++ androidx.appcompat.widget.Toolbar getToolbar()
++ void setToolbar(androidx.appcompat.widget.Toolbar)
+# void onCreate(android.os.Bundle)
+- void mainButton()
+- void copyText(java.lang.String)
++ void setValue()
++ boolean onSupportNavigateUp()
++ void onBackPressed()
+}
+class com.example.waroeng_online.databinding.ActivityMainBinding {
+- RelativeLayout rootView
++ FrameLayout container
++ BottomNavigationView navView
++ RelativeLayout getRoot()
++ {static} ActivityMainBinding inflate(LayoutInflater)
++ {static} ActivityMainBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivityMainBinding bind(View)
+}
+class com.example.waroeng_online.databinding.ToolbarBinding {
+- AppBarLayout rootView
++ Toolbar toolbar
++ TextView tvTitle
++ AppBarLayout getRoot()
++ {static} ToolbarBinding inflate(LayoutInflater)
++ {static} ToolbarBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ToolbarBinding bind(View)
+}
+class com.example.waroeng_online.model.rajaongkir.Result {
+- java.lang.String name
+- java.lang.String code
+- java.util.ArrayList<com.example.waroeng_online.model.rajaongkir.Costs> costs
++ java.lang.String getName()
++ java.lang.String getCode()
++ java.util.ArrayList<com.example.waroeng_online.model.rajaongkir.Costs> getCosts()
+}
+class com.example.waroeng_online.databinding.ItemRiwayatBinding {
+- CardView rootView
++ TextView btnDetail
++ CardView layout
++ TextView tvHarga
++ TextView tvJumlah
++ TextView tvNama
++ TextView tvStatus
++ TextView tvTgl
++ CardView getRoot()
++ {static} ItemRiwayatBinding inflate(LayoutInflater)
++ {static} ItemRiwayatBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ItemRiwayatBinding bind(View)
+}
+class com.example.waroeng_online.databinding.ActivitySuccessBinding {
+- LinearLayout rootView
++ Button btnCekStatus
++ ImageView btnCopyNoRek
++ ImageView btnCopyNominal
++ ImageView imageBank
++ ImageView img1
++ ImageView img2
++ ImageView img3
++ TextView tvNamaPenerima
++ TextView tvNominal
++ TextView tvNomorRekening
++ LinearLayout getRoot()
++ {static} ActivitySuccessBinding inflate(LayoutInflater)
++ {static} ActivitySuccessBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ActivitySuccessBinding bind(View)
+}
+class com.example.waroeng_online.room.DaoKeranjang_Impl {
+- RoomDatabase __db
+- EntityInsertionAdapter<Produk> __insertionAdapterOfProduk
+- EntityDeletionOrUpdateAdapter<Produk> __deletionAdapterOfProduk
+- EntityDeletionOrUpdateAdapter<Produk> __updateAdapterOfProduk
+- SharedSQLiteStatement __preparedStmtOfDeleteById
+- SharedSQLiteStatement __preparedStmtOfDeleteAll
++ void insert(Produk)
++ void delete(Produk)
++ void delete(List<? extends Produk>)
++ int update(Produk)
++ int deleteById(String)
++ int deleteAll()
++ List<Produk> getAll()
++ Produk getProduk(int)
++ {static} List<Class<?>> getRequiredConverters()
+}
+class com.example.waroeng_online.util.ApiKey {
++ {static} com.example.waroeng_online.util.ApiKey INSTANCE
++ {static} java.lang.String key
+}
+class com.example.waroeng_online.adapter.AdapterProduk {
+- android.app.Activity activity
+- java.util.ArrayList<com.example.waroeng_online.model.Produk> data
++ android.app.Activity getActivity()
++ void setActivity(android.app.Activity)
++ com.example.waroeng_online.adapter.AdapterProduk.Holder onCreateViewHolder(android.view.ViewGroup,int)
++ void onBindViewHolder(com.example.waroeng_online.adapter.AdapterProduk.Holder,int)
++ int getItemCount()
+}
+class com.example.waroeng_online.adapter.AdapterProduk.Holder {
+- android.widget.TextView tvNama
+- android.widget.TextView tvHarga
+- android.widget.ImageView imgProduk
+- androidx.cardview.widget.CardView layout
++ android.widget.TextView getTvNama()
++ android.widget.TextView getTvHarga()
++ android.widget.ImageView getImgProduk()
++ androidx.cardview.widget.CardView getLayout()
+}
+class com.example.waroeng_online.app.ApiConfigAlamat {
++ {static} com.example.waroeng_online.app.ApiConfigAlamat INSTANCE
+- {static} java.lang.String BASE_URL
+- retrofit2.Retrofit getClient()
++ com.example.waroeng_online.app.ApiService getInstanceRetrofit()
+}
+class com.example.waroeng_online.databinding.ItemProdukBinding {
+- CardView rootView
++ ImageView imgProduk
++ CardView layout
++ TextView tvHarga
++ TextView tvNama
++ CardView getRoot()
++ {static} ItemProdukBinding inflate(LayoutInflater)
++ {static} ItemProdukBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ItemProdukBinding bind(View)
+}
+class com.example.waroeng_online.model.rajaongkir.ResponOngkir {
+- com.example.waroeng_online.model.rajaongkir.ResponOngkir.Rajaongkir rajaongkir
++ com.example.waroeng_online.model.rajaongkir.ResponOngkir.Rajaongkir getRajaongkir()
+}
+class com.example.waroeng_online.model.rajaongkir.ResponOngkir.Rajaongkir {
+- java.util.ArrayList<com.example.waroeng_online.model.rajaongkir.Result> results
++ java.util.ArrayList<com.example.waroeng_online.model.rajaongkir.Result> getResults()
+}
+class com.example.waroeng_online.databinding.ItemProdukTransaksiBinding {
+- CardView rootView
++ ImageView imgProduk
++ CardView layout
++ TextView tvBerat
++ TextView tvHarga
++ TextView tvJumlah
++ TextView tvNama
++ TextView tvTotalHarga
++ CardView getRoot()
++ {static} ItemProdukTransaksiBinding inflate(LayoutInflater)
++ {static} ItemProdukTransaksiBinding inflate(LayoutInflater,ViewGroup,boolean)
++ {static} ItemProdukTransaksiBinding bind(View)
+}
+
+
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ActivityDetailProdukBinding
+com.example.waroeng_online.activity.AppCompatActivity <|-- com.example.waroeng_online.activity.PengirimanActivity
+com.example.waroeng_online.room.RoomDatabase <|-- com.example.waroeng_online.room.MyDatabase
+com.example.waroeng_online.room.MyDatabase +.. com.example.waroeng_online.room.MyDatabase.Companion
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ItemBankBinding
+com.example.waroeng_online.room.MyDatabase <|-- com.example.waroeng_online.room.MyDatabase_Impl
+com.example.waroeng_online.adapter.Adapter <|-- com.example.waroeng_online.adapter.AdapterAlamat
+com.example.waroeng_online.adapter.AdapterAlamat +.. com.example.waroeng_online.adapter.AdapterAlamat.Holder
+com.example.waroeng_online.adapter.ViewHolder <|-- com.example.waroeng_online.adapter.AdapterAlamat.Holder
+com.example.waroeng_online.adapter.AdapterAlamat +.. com.example.waroeng_online.adapter.AdapterAlamat.Listeners
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.FragmentKeranjangBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ActivityTambahAlamatBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ItemAlamatBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ItemSpinnerBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ActivityPengirimanBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ActivityBaruBinding
+com.example.waroeng_online.activity.AppCompatActivity <|-- com.example.waroeng_online.activity.TambahAlamatActivity
+com.example.waroeng_online.activity.AppCompatActivity <|-- com.example.waroeng_online.activity.ListAlamatActivity
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.FragmentAkunBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ActivityDetailTransaksiBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ActivityRiwayatBinding
+com.example.waroeng_online.activity.AppCompatActivity <|-- com.example.waroeng_online.activity.RegisActivity
+com.example.waroeng_online.activity.AppCompatActivity <|-- com.example.waroeng_online.activity.RiwayatActivity
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ToolbarCustomBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ItemKurirBinding
+com.example.waroeng_online.room.DaoAlamat <|.. com.example.waroeng_online.room.DaoAlamat_Impl
+com.example.waroeng_online.adapter.Adapter <|-- com.example.waroeng_online.adapter.AdapterKurir
+com.example.waroeng_online.adapter.AdapterKurir +.. com.example.waroeng_online.adapter.AdapterKurir.Holder
+com.example.waroeng_online.adapter.ViewHolder <|-- com.example.waroeng_online.adapter.AdapterKurir.Holder
+com.example.waroeng_online.adapter.AdapterKurir +.. com.example.waroeng_online.adapter.AdapterKurir.Listeners
+com.example.waroeng_online.model.ModelAlamat +.. com.example.waroeng_online.model.ModelAlamat.Status
+com.example.waroeng_online.model.ModelAlamat +.. com.example.waroeng_online.model.ModelAlamat.Provinsi
+com.example.waroeng_online.adapter.Adapter <|-- com.example.waroeng_online.adapter.AdapterKeranjang
+com.example.waroeng_online.adapter.AdapterKeranjang +.. com.example.waroeng_online.adapter.AdapterKeranjang.Holder
+com.example.waroeng_online.adapter.ViewHolder <|-- com.example.waroeng_online.adapter.AdapterKeranjang.Holder
+com.example.waroeng_online.adapter.AdapterKeranjang +.. com.example.waroeng_online.adapter.AdapterKeranjang.Listeners
+com.example.waroeng_online.activity.AppCompatActivity <|-- com.example.waroeng_online.activity.PembayaranActivity
+java.io.Serializable <|.. com.example.waroeng_online.model.Produk
+com.example.waroeng_online.fragment.Fragment <|-- com.example.waroeng_online.fragment.HomeFragment
+com.example.waroeng_online.activity.AppCompatActivity <|-- com.example.waroeng_online.activity.MasukActivity
+com.example.waroeng_online.AppCompatActivity <|-- com.example.waroeng_online.MainActivity
+com.example.waroeng_online.activity.AppCompatActivity <|-- com.example.waroeng_online.activity.LoginActivity
+com.example.waroeng_online.activity.AppCompatActivity <|-- com.example.waroeng_online.activity.DetailProdukActivity
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ViewUploadBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ItemSliderBinding
+com.example.waroeng_online.fragment.Fragment <|-- com.example.waroeng_online.fragment.KeranjangFragment
+com.example.waroeng_online.app.ApiService +.. com.example.waroeng_online.app.ApiService.DefaultImpls
+com.example.waroeng_online.activity.AppCompatActivity <|-- com.example.waroeng_online.activity.DetailTransaksiActivity
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ActivityPembayaranBinding
+com.example.waroeng_online.adapter.Adapter <|-- com.example.waroeng_online.adapter.AdapterProdukTransaksi
+com.example.waroeng_online.adapter.AdapterProdukTransaksi +.. com.example.waroeng_online.adapter.AdapterProdukTransaksi.Holder
+com.example.waroeng_online.adapter.ViewHolder <|-- com.example.waroeng_online.adapter.AdapterProdukTransaksi.Holder
+com.example.waroeng_online.adapter.AdapterProdukTransaksi +.. com.example.waroeng_online.adapter.AdapterProdukTransaksi.Listeners
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.FragmentHomeBinding
+com.example.waroeng_online.model.Checkout +.. com.example.waroeng_online.model.Checkout.Item
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ActivityRegisBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ItemKeranjangBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ActivityLoginBinding
+com.example.waroeng_online.firebase.FirebaseMessagingService <|-- com.example.waroeng_online.firebase.MyFirebaseMessagingService
+com.example.waroeng_online.adapter.Adapter <|-- com.example.waroeng_online.adapter.AdapterBank
+com.example.waroeng_online.adapter.AdapterBank +.. com.example.waroeng_online.adapter.AdapterBank.Holder
+com.example.waroeng_online.adapter.ViewHolder <|-- com.example.waroeng_online.adapter.AdapterBank.Holder
+com.example.waroeng_online.adapter.AdapterBank +.. com.example.waroeng_online.adapter.AdapterBank.Listeners
+com.example.waroeng_online.activity.AppCompatActivity <|-- com.example.waroeng_online.activity.BaruActivity
+com.example.waroeng_online.adapter.Adapter <|-- com.example.waroeng_online.adapter.AdapterRiwayat
+com.example.waroeng_online.adapter.AdapterRiwayat +.. com.example.waroeng_online.adapter.AdapterRiwayat.Holder
+com.example.waroeng_online.adapter.ViewHolder <|-- com.example.waroeng_online.adapter.AdapterRiwayat.Holder
+com.example.waroeng_online.adapter.AdapterRiwayat +.. com.example.waroeng_online.adapter.AdapterRiwayat.Listeners
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ActivityMasukBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ActivityListAlamatBinding
+com.example.waroeng_online.fragment.Fragment <|-- com.example.waroeng_online.fragment.AkunFragment
+com.example.waroeng_online.activity.AppCompatActivity <|-- com.example.waroeng_online.activity.SuccessActivity
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ActivityMainBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ToolbarBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ItemRiwayatBinding
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ActivitySuccessBinding
+com.example.waroeng_online.room.DaoKeranjang <|.. com.example.waroeng_online.room.DaoKeranjang_Impl
+com.example.waroeng_online.adapter.Adapter <|-- com.example.waroeng_online.adapter.AdapterProduk
+com.example.waroeng_online.adapter.AdapterProduk +.. com.example.waroeng_online.adapter.AdapterProduk.Holder
+com.example.waroeng_online.adapter.ViewHolder <|-- com.example.waroeng_online.adapter.AdapterProduk.Holder
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ItemProdukBinding
+com.example.waroeng_online.model.rajaongkir.ResponOngkir +.. com.example.waroeng_online.model.rajaongkir.ResponOngkir.Rajaongkir
+androidx.viewbinding.ViewBinding <|.. com.example.waroeng_online.databinding.ItemProdukTransaksiBinding
+@enduml
